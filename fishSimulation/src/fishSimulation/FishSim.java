@@ -27,7 +27,7 @@ public class FishSim {
 		panel = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 
-		button = new JButton[15][15];
+		button = new JButton[15][15]; 
 
 		String[][] ac;
 		
@@ -39,6 +39,7 @@ public class FishSim {
 
 		for (int i = 0; i < button.length; i++) {
 			for (int j = 0; j < button[0].length; j++) {
+				button[i][j] = new JButton(" - ");
 				//button[i][j].setBorder(null);
 
 				//button[i][j].setActionCommand(ac[i][j]);

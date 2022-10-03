@@ -20,13 +20,14 @@ public class FishSim {
 	JButton[][] button;
 
 	public FishSim() {
-		frame = new JFrame("FishSim");
+		frame = new JFrame("FishSim"); 
 		frame.setSize(500, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 
 		panel = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
+		//this is broken
 		water = new ImageIcon(download.png);
 
 		button = new JButton[15][15]; 

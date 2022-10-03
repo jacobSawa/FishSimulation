@@ -14,6 +14,7 @@ import java.awt.GridBagLayout;
 import javax.swing.*;
 
 public class FishSim {
+	ImageIcon water;
 	JFrame frame;
 	JPanel panel;
 	JButton[][] button;
@@ -26,6 +27,7 @@ public class FishSim {
 
 		panel = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
+		water = new ImageIcon(download.png);
 
 		button = new JButton[15][15]; 
 

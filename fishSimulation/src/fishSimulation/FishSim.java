@@ -27,8 +27,9 @@ public class FishSim {
 
 		panel = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
-		//this is broken
-		water = new ImageIcon(download.png);
+		water = new ImageIcon();
+
+		water = new ImageIcon(getClass().getClassLoader().getResource("Deafault.jpg"));
 
 		button = new JButton[15][15]; 
 
@@ -38,7 +39,7 @@ public class FishSim {
 		for (int i = 0; i < button.length; i++) {
 			for (int j = 0; j < button[0].length; j++) {
 				button[i][j] = new JButton(" - ");
-				//button[i][j].setBorder(null); 
+				button[i][j].setBorder(null); 
 
 				//button[i][j].setActionCommand(ac[i][j]);
 

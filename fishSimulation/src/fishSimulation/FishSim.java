@@ -33,7 +33,7 @@ public class FishSim {
 		
 		for(int i = 0; i < button.length; i ++) {
 			for (int j = 0; j < button[0].length; j ++) {
-				button[i][j].setText("-");
+				button[i][j].setText(" - ");
 			}
 		}
 

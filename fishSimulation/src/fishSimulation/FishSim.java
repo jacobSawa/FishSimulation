@@ -21,7 +21,7 @@ public class FishSim {
 
 	public FishSim() {
 		frame = new JFrame("FishSim"); 
-		frame.setSize(500, 500);
+		frame.setSize(2500, 2500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 
@@ -29,7 +29,7 @@ public class FishSim {
 		GridBagConstraints c = new GridBagConstraints();
 		
 
-		water = new ImageIcon(getClass().getClassLoader().getResource("DefaultIcon.jpg"));
+		water = new ImageIcon(getClass().getClassLoader().getResource("Water.jpg"));
 
 		button = new JButton[15][15]; 
 

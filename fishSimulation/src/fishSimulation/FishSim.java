@@ -32,10 +32,10 @@ public class FishSim {
 		water = new ImageIcon(getClass().getClassLoader().getResource("Water.jpg"));
 
 		button = new JButton[15][15]; 
-		//test 2
+		
 		String[][] ac;
 		
-		//below it
+		
 		for (int i = 0; i < button.length; i++) {
 			for (int j = 0; j < button[0].length; j++) {
 				button[i][j] = new JButton(water);

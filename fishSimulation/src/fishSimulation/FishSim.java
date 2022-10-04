@@ -34,8 +34,8 @@ public class FishSim {
 		button = new JButton[15][15]; 
 
 		String[][] ac;
-		//balls
-
+		
+		//below it
 		for (int i = 0; i < button.length; i++) {
 			for (int j = 0; j < button[0].length; j++) {
 				button[i][j] = new JButton(water);

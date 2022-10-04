@@ -21,7 +21,7 @@ public class FishSim {
 
 	public FishSim() {
 		frame = new JFrame("FishSim"); 
-		frame.setSize(650, 650);
+		frame.setSize(1250, 2500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 

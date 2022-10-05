@@ -40,6 +40,7 @@ public class FishSim {
 		icons[2] = new ImageIcon(getClass().getClassLoader().getResource("Stop.png"));
 		icons[3] = new ImageIcon(getClass().getClassLoader().getResource("Reset.png"));
 		icons[4] = new ImageIcon(getClass().getClassLoader().getResource("SeaWeed.jpg"));
+		icons[5] = new ImageIcon(getClass().getClassLoader().getResource("FishPH.png"));
 
 		start = new JButton(icons[1]);
 		start.setBorder(null);
@@ -154,7 +155,7 @@ public class FishSim {
 			for (int s = 0; s < 15; s++) {
 				int x = r.nextInt(15);
 				int y = r.nextInt(15);
-				button[x][y].setIcon(icons[0]);
+				button[x][y].setIcon(icons[5]);
 			}
 		} else {
 			for (int i = 0; i < button.length; i ++ ) {
@@ -166,7 +167,7 @@ public class FishSim {
 			for (int s = 0; s < 15; s++) {
 				int x = r.nextInt(15);
 				int y = r.nextInt(15);
-				button[x][y].setIcon(icons[0]);
+				button[x][y].setIcon(icons[5]);
 			}
 
 		}

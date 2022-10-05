@@ -32,16 +32,27 @@ public class FishSim {
 		water = new ImageIcon(getClass().getClassLoader().getResource("Water.jpg"));
 
 		button = new JButton[15][15]; 
+
+		int[] ac1 = new int[255];
+		int[] ac2 = new int[15];
 		
-		String[][] ac;
 		
 		
+		for (int i = 0; i < 255; i ++) {
+			ac1[i] = i;
+			
+		}	
+		
+		
+
+		//clear buttons 
 		for (int i = 0; i < button.length; i++) {
 			for (int j = 0; j < button[0].length; j++) {
 				button[i][j] = new JButton(water);
 				button[i][j].setBorder(null); 
 
-				//button[i][j].setActionCommand(ac[i][j]);
+				button[i][j].setActionCommand(Integer.toString(ac1[i]));
+				int l = ac2[i];
 
 				button[i][j].addActionListener(new ActionListener() {
 
@@ -49,9 +60,15 @@ public class FishSim {
 					public void actionPerformed(ActionEvent e) {
 						// TODO Auto-generated method stub
 						int num1, num2;
-						num1 = Integer.valueOf(e.getActionCommand()) / 10;
-
+						
+						
 						num2 = Integer.valueOf(e.getActionCommand()) % 10;
+						
+						System.out.println(num2);
+						
+						num1 = (Integer.valueOf(e.getActionCommand()) - num2) / 10; 
+						
+						button[num1][num2].setIcon(null);
 
 					}
 

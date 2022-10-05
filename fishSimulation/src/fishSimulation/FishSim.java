@@ -18,6 +18,7 @@ public class FishSim {
 	JFrame frame;
 	JPanel panel;
 	JButton[][] button;
+	JButton startButton;
 
 	public FishSim() {
 		frame = new JFrame("FishSim"); 
@@ -32,8 +33,19 @@ public class FishSim {
 		water = new ImageIcon(getClass().getClassLoader().getResource("Water.jpg"));
 
 		button = new JButton[15][15]; 
+		startButton = new JButton();
 		
 		String[][] ac;
+		
+		startButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+			
+		});
 		
 		
 		for (int i = 0; i < button.length; i++) {

@@ -21,7 +21,7 @@ public class FishSim {
 
 	public FishSim() {
 		frame = new JFrame("FishSim"); 
-		frame.setSize(1250, 2500);
+		frame.setSize(1250, 1000);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 
@@ -33,16 +33,14 @@ public class FishSim {
 
 		button = new JButton[15][15]; 
 
-		int[] ac1 = new int[255];
-		int[] ac2 = new int[15];
+		String[][] ac = new String[15][15];
 		
 		
-		
-		for (int i = 0; i < 255; i ++) {
-			ac1[i] = i;
-			
+		for (int i = 0; i < ac.length; i ++) {
+			for (int j = 0; j < ac[0].length; j ++) {
+				ac[i][j] = Integer.toString(i) + "-" + Integer.toString(j);
+			}
 		}	
-		
 		
 
 		//clear buttons 
@@ -51,8 +49,7 @@ public class FishSim {
 				button[i][j] = new JButton(water);
 				button[i][j].setBorder(null); 
 
-				button[i][j].setActionCommand(Integer.toString(ac1[i]));
-				int l = ac2[i];
+				button[i][j].setActionCommand((ac[i][j]));
 
 				button[i][j].addActionListener(new ActionListener() {
 
@@ -61,15 +58,12 @@ public class FishSim {
 						// TODO Auto-generated method stub
 						int num1, num2;
 						
+						String[] str = e.getActionCommand().split("-");
 						
-						num2 = Integer.valueOf(e.getActionCommand()) % 10;
-						
-						System.out.println(num2);
-						
-						num1 = (Integer.valueOf(e.getActionCommand()) - num2) / 10; 
+						num1 = Integer.valueOf(str[0]);
+						num2 = Integer.valueOf(str[1]);
 						
 						button[num1][num2].setIcon(null);
-
 					}
 
 				});

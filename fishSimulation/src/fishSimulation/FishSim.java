@@ -14,10 +14,11 @@ import java.awt.GridBagLayout;
 import javax.swing.*;
 
 public class FishSim {
-	ImageIcon water;
+	ImageIcon[] icons;
 	JFrame frame;
 	JPanel panel;
 	JButton[][] button;
+	JButton start;
 
 	public FishSim() {
 		frame = new JFrame("FishSim"); 
@@ -28,8 +29,28 @@ public class FishSim {
 		panel = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
+		//Icon 0 = Water
+		icons[0] = new ImageIcon(getClass().getClassLoader().getResource("Water.jpg"));
+		//Icon 1 = start button
+		icons[1] = new ImageIcon(getClass().getClassLoader().getResource("start.jpg"));
 
-		water = new ImageIcon(getClass().getClassLoader().getResource("Water.jpg"));
+		start = new JButton(icons[1]);
+		
+		start.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+	
+				start.setIcon(null);
+			}
+
+		});
+
+		c.gridx = 0;
+		c.gridy = 0;
+		panel.add(start, c);
+		
+		
 
 		button = new JButton[15][15]; 
 
@@ -46,7 +67,7 @@ public class FishSim {
 		//clear buttons 
 		for (int i = 0; i < button.length; i++) {
 			for (int j = 0; j < button[0].length; j++) {
-				button[i][j] = new JButton(water);
+				button[i][j] = new JButton(icons[0]);
 				button[i][j].setBorder(null); 
 
 				button[i][j].setActionCommand((ac[i][j]));
@@ -68,8 +89,8 @@ public class FishSim {
 
 				});
 
-				c.gridx = i;
-				c.gridy = j;
+				c.gridx = i + 1;
+				c.gridy = j + 1;
 				panel.add(button[i][j], c);
 			}
 		}

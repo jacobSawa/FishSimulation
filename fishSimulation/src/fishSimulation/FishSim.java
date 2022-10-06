@@ -20,7 +20,10 @@ public class FishSim {
 	JFrame frame;
 	JPanel panel;
 	JButton[][] button;
-	JButton start;
+	
+
+JButton startButton;
+JButton start;
 	JButton stop;
 	JButton reset;
 	int rep = 0;
@@ -100,17 +103,7 @@ public class FishSim {
 		c.gridy = 0;
 		panel.add(reset, c);
 
-		button = new JButton[15][15];
 
-		String[][] ac = new String[15][15];
-
-		for (int i = 0; i < ac.length; i++) {
-			for (int j = 0; j < ac[0].length; j++) {
-				ac[i][j] = Integer.toString(i) + "-" + Integer.toString(j);
-			}
-		}
-
-		// clear buttons
 		for (int i = 0; i < button.length; i++) {
 			for (int j = 0; j < button[0].length; j++) {
 
@@ -142,8 +135,14 @@ public class FishSim {
 				c.gridx = i;
 				c.gridy = j + 2;
 				panel.add(button[i][j], c);
+				
+				
 			}
 		}
+		
+		c.gridx = -1;
+		c.gridy = 7;
+		panel.add(startButton, c);
 
 		reset(1);
 

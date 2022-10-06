@@ -12,55 +12,106 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.*;
+import java.util.Random;
+import java.util.Date;
 
 public class FishSim {
-	ImageIcon water;
+	ImageIcon[] icons;
 	JFrame frame;
 	JPanel panel;
 	JButton[][] button;
-	JButton startButton;
-	
 	
 
+JButton startButton;
+JButton start;
+	JButton stop;
+	JButton reset;
+	int rep = 0;
+
 	public FishSim() {
-		frame = new JFrame("FishSim"); 
-		frame.setSize(1250, 2500);
+
+		frame = new JFrame("FishSim");
+		frame.setSize(1250, 1000);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 
 		panel = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
-		
 
-		water = new ImageIcon(getClass().getClassLoader().getResource("Water.jpg"));
+		icons = new ImageIcon[10];
 
-		button = new JButton[15][15]; 
-		
-		startButton = new JButton();
-		startButton.setText("PRESS TO START SIMULATION");
-		
-		
-		String[][] ac;
-		
-		startButton.addActionListener(new ActionListener() {
+		icons[0] = new ImageIcon(getClass().getClassLoader().getResource("Water.jpg"));
+		icons[1] = new ImageIcon(getClass().getClassLoader().getResource("Start.png"));
+		icons[2] = new ImageIcon(getClass().getClassLoader().getResource("Stop.png"));
+		icons[3] = new ImageIcon(getClass().getClassLoader().getResource("Reset.png"));
+		icons[4] = new ImageIcon(getClass().getClassLoader().getResource("SeaWeed.jpg"));
+		icons[5] = new ImageIcon(getClass().getClassLoader().getResource("FishPH.png"));
+
+		start = new JButton(icons[1]);
+		start.setBorder(null);
+
+		start.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				
-				
-				
+
 			}
-			
+
 		});
-		
-		
+
+		c.gridheight = 2;
+		c.gridwidth = 5;
+		c.gridx = 0;
+		c.gridy = 0;
+		panel.add(start, c);
+
+		stop = new JButton(icons[2]);
+		stop.setBorder(null);
+
+		stop.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+
+		});
+
+		c.gridheight = 2;
+		c.gridwidth = 5;
+		c.gridx = 10;
+		c.gridy = 0;
+		panel.add(stop, c);
+
+		reset = new JButton(icons[3]);
+		reset.setBorder(null);
+
+		reset.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				reset(0);
+
+			}
+
+		});
+
+		c.gridheight = 2;
+		c.gridwidth = 5;
+		c.gridx = 5;
+		c.gridy = 0;
+		panel.add(reset, c);
+
+
 		for (int i = 0; i < button.length; i++) {
 			for (int j = 0; j < button[0].length; j++) {
-				button[i][j] = new JButton(water);
-				button[i][j].setBorder(null); 
 
-				//button[i][j].setActionCommand(ac[i][j]);
+				button[i][j] = new JButton(icons[4]);
+
+				button[i][j].setBorder(null);
+
+				button[i][j].setActionCommand((ac[i][j]));
 
 				button[i][j].addActionListener(new ActionListener() {
 
@@ -68,16 +119,21 @@ public class FishSim {
 					public void actionPerformed(ActionEvent e) {
 						// TODO Auto-generated method stub
 						int num1, num2;
-						num1 = Integer.valueOf(e.getActionCommand()) / 10;
 
-						num2 = Integer.valueOf(e.getActionCommand()) % 10;
+						String[] str = e.getActionCommand().split("-");
 
+						num1 = Integer.valueOf(str[0]);
+						num2 = Integer.valueOf(str[1]);
+
+						button[num1][num2].setIcon(null);
 					}
 
 				});
 
+				c.gridheight = 1;
+				c.gridwidth = 1;
 				c.gridx = i;
-				c.gridy = j;
+				c.gridy = j + 2;
 				panel.add(button[i][j], c);
 				
 				
@@ -88,7 +144,34 @@ public class FishSim {
 		c.gridy = 7;
 		panel.add(startButton, c);
 
+		reset(1);
+
 		frame.setContentPane(panel);
 		frame.setVisible(true);
 	}
+
+	public void reset(int go) {
+		Random r = new Random();
+		if (go == 1) {
+			for (int s = 0; s < 15; s++) {
+				int x = r.nextInt(15);
+				int y = r.nextInt(15);
+				button[x][y].setIcon(icons[5]);
+			}
+		} else {
+			for (int i = 0; i < button.length; i++) {
+				for (int j = 0; j < button.length; j++) {
+					button[i][j].setIcon(icons[4]);
+				}
+			}
+
+			for (int s = 0; s < 15; s++) {
+				int x = r.nextInt(15);
+				int y = r.nextInt(15);
+				button[x][y].setIcon(icons[5]);
+			}
+
+		}
+	}
+
 }

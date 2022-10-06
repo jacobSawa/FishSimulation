@@ -20,10 +20,7 @@ public class FishSim {
 	JFrame frame;
 	JPanel panel;
 	JButton[][] button;
-	
-
-JButton startButton;
-JButton start;
+	JButton start;
 	JButton stop;
 	JButton reset;
 	int rep = 0;
@@ -46,6 +43,7 @@ JButton start;
 		icons[3] = new ImageIcon(getClass().getClassLoader().getResource("Reset.png"));
 		icons[4] = new ImageIcon(getClass().getClassLoader().getResource("SeaWeed.jpg"));
 		icons[5] = new ImageIcon(getClass().getClassLoader().getResource("FishPH.png"));
+		icons[6] = new ImageIcon(getClass().getClassLoader().getResource("SharkPH.png"));
 
 		start = new JButton(icons[1]);
 		start.setBorder(null);
@@ -103,7 +101,17 @@ JButton start;
 		c.gridy = 0;
 		panel.add(reset, c);
 
+		button = new JButton[15][15];
 
+		String[][] ac = new String[15][15];
+
+		for (int i = 0; i < ac.length; i++) {
+			for (int j = 0; j < ac[0].length; j++) {
+				ac[i][j] = Integer.toString(i) + "-" + Integer.toString(j);
+			}
+		}
+
+		// clear buttons
 		for (int i = 0; i < button.length; i++) {
 			for (int j = 0; j < button[0].length; j++) {
 
@@ -124,8 +132,10 @@ JButton start;
 
 						num1 = Integer.valueOf(str[0]);
 						num2 = Integer.valueOf(str[1]);
-
-						button[num1][num2].setIcon(null);
+						
+						if (button[num1][num2].getIcon().equals(icons[4])) {
+							button[num1][num2].setIcon(icons[6]);
+						}
 					}
 
 				});
@@ -135,14 +145,8 @@ JButton start;
 				c.gridx = i;
 				c.gridy = j + 2;
 				panel.add(button[i][j], c);
-				
-				
 			}
 		}
-		
-		c.gridx = -1;
-		c.gridy = 7;
-		panel.add(startButton, c);
 
 		reset(1);
 
@@ -168,7 +172,12 @@ JButton start;
 			for (int s = 0; s < 15; s++) {
 				int x = r.nextInt(15);
 				int y = r.nextInt(15);
-				button[x][y].setIcon(icons[5]);
+				if (!button[x][y].getIcon().equals(icons[5])) {
+					button[x][y].setIcon(icons[5]);
+				}else {
+					s += 1;
+				}
+				
 			}
 
 		}

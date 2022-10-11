@@ -44,7 +44,8 @@ public class FishSim {
 		icons[3] = new ImageIcon(getClass().getClassLoader().getResource("Reset.png"));
 		icons[4] = new ImageIcon(getClass().getClassLoader().getResource("SeaWeed.jpg"));
 		icons[5] = new ImageIcon(getClass().getClassLoader().getResource("Nemor.jpg"));
-		icons[6] = new ImageIcon(getClass().getClassLoader().getResource("Shark.jpg"));
+		icons[6] = new ImageIcon(getClass().getClassLoader().getResource("SharkSW.jpg"));
+		icons[7] = new ImageIcon(getClass().getClassLoader().getResource("SharkW.jpg"));
 
 
 		start = new JButton(icons[1]);
@@ -135,8 +136,12 @@ public class FishSim {
 						num1 = Integer.valueOf(str[0]);
 						num2 = Integer.valueOf(str[1]);
 						
-						if (button[num1][num2].getIcon().equals(icons[4]) && st == 0) {
-							button[num1][num2].setIcon(icons[6]);
+						if (button[num1][num2].getIcon().equals(icons[4]) && st == 0 || button[num1][num2].getIcon().equals(icons[0]) && st == 0) {
+							if (button[num1][num2].getIcon().equals(icons[4])) {
+								button[num1][num2].setIcon(icons[6]);
+							}else {
+								button[num1][num2].setIcon(icons[7]);
+							}
 						}
 					}
 

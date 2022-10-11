@@ -52,7 +52,12 @@ public class FishSim {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				for(int i=0; i>button.length; i++) {
+					for(int j=0; j>button[0].length; j++) {
+						
+					}
+				}
+				
 			}
 
 		});

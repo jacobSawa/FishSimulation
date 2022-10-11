@@ -57,7 +57,7 @@ public class FishSim {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+      
 				while(startNum != 1) {
 					try {
 						Thread.sleep(5000);
@@ -65,13 +65,17 @@ public class FishSim {
 						e1.printStackTrace();
 					}
 					
+          for(int i=0; i>button.length; i++) {
+					for(int j=0; j>button[0].length; j++) {
+						
+					}
+				}
 					
 				}
 				
 				
 
 				st = 1;
-
 			}
 
 		});

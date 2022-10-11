@@ -13,7 +13,6 @@ import java.awt.GridBagLayout;
 
 import javax.swing.*;
 import java.util.Random;
-import java.util.Date;
 
 public class FishSim {
 	ImageIcon[] icons;

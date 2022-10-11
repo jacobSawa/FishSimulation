@@ -13,7 +13,6 @@ import java.awt.GridBagLayout;
 
 import javax.swing.*;
 import java.util.Random;
-import java.util.Date;
 
 public class FishSim {
 	ImageIcon[] icons;
@@ -24,7 +23,11 @@ public class FishSim {
 	JButton stop;
 	JButton reset;
 	int rep = 0;
+
+	int startNum = 0;
+
 	int st = 0;
+
 
 	public FishSim() {
 
@@ -54,7 +57,21 @@ public class FishSim {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+
+				while(startNum != 1) {
+					try {
+						Thread.sleep(5000);
+					} catch (InterruptedException e1) {
+						e1.printStackTrace();
+					}
+					
+					
+				}
+				
+				
+
 				st = 1;
+
 			}
 
 		});
@@ -72,7 +89,7 @@ public class FishSim {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				startNum = 1;
 			}
 
 		});

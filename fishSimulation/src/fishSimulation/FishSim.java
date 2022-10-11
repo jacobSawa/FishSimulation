@@ -46,6 +46,7 @@ public class FishSim {
 		icons[5] = new ImageIcon(getClass().getClassLoader().getResource("FishPH.png"));
 		icons[6] = new ImageIcon(getClass().getClassLoader().getResource("Shark.jpg"));
 
+
 		start = new JButton(icons[1]);
 		start.setBorder(null);
 

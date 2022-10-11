@@ -23,7 +23,6 @@ public class FishSim {
 	JButton start;
 	JButton stop;
 	JButton reset;
-	int rep = 0;
 	int st = 0;
 
 	public FishSim() {

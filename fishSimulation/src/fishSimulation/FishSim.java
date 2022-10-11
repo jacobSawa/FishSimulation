@@ -23,7 +23,11 @@ public class FishSim {
 	JButton stop;
 	JButton reset;
 	int rep = 0;
+
 	int startNum = 0;
+
+	int st = 0;
+
 
 	public FishSim() {
 
@@ -43,7 +47,8 @@ public class FishSim {
 		icons[3] = new ImageIcon(getClass().getClassLoader().getResource("Reset.png"));
 		icons[4] = new ImageIcon(getClass().getClassLoader().getResource("SeaWeed.jpg"));
 		icons[5] = new ImageIcon(getClass().getClassLoader().getResource("FishPH.png"));
-		icons[6] = new ImageIcon(getClass().getClassLoader().getResource("SharkPH.png"));
+		icons[6] = new ImageIcon(getClass().getClassLoader().getResource("Shark.jpg"));
+
 
 		start = new JButton(icons[1]);
 		start.setBorder(null);
@@ -52,6 +57,7 @@ public class FishSim {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+
 				while(startNum != 1) {
 					try {
 						Thread.sleep(5000);
@@ -63,6 +69,9 @@ public class FishSim {
 				}
 				
 				
+
+				st = 1;
+
 			}
 
 		});
@@ -98,7 +107,7 @@ public class FishSim {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				
 				reset(0);
 
 			}
@@ -143,7 +152,7 @@ public class FishSim {
 						num1 = Integer.valueOf(str[0]);
 						num2 = Integer.valueOf(str[1]);
 						
-						if (button[num1][num2].getIcon().equals(icons[4])) {
+						if (button[num1][num2].getIcon().equals(icons[4]) && st == 0) {
 							button[num1][num2].setIcon(icons[6]);
 						}
 					}
@@ -165,6 +174,7 @@ public class FishSim {
 	}
 
 	public void reset(int go) {
+		st = 0;
 		Random r = new Random();
 		if (go == 1) {
 			for (int s = 0; s < 15; s++) {
@@ -185,7 +195,7 @@ public class FishSim {
 				if (!button[x][y].getIcon().equals(icons[5])) {
 					button[x][y].setIcon(icons[5]);
 				}else {
-					s += 1;
+					s -= 1;
 				}
 				
 			}

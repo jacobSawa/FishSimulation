@@ -44,7 +44,7 @@ public class FishSim {
 		icons[3] = new ImageIcon(getClass().getClassLoader().getResource("Reset.png"));
 		icons[4] = new ImageIcon(getClass().getClassLoader().getResource("SeaWeed.jpg"));
 		icons[5] = new ImageIcon(getClass().getClassLoader().getResource("Nemor.jpg"));
-		icons[6] = new ImageIcon(getClass().getClassLoader().getResource("SharkSW.jpg"));
+		icons[6] = new ImageIcon(getClass().getClassLoader().getResource("Shark.jpg"));
 		icons[7] = new ImageIcon(getClass().getClassLoader().getResource("SharkW.jpg"));
 
 

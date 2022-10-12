@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-
+import java.util.concurrent.TimeUnit;
 import javax.swing.*;
 import java.util.Random;
 
@@ -31,7 +31,9 @@ public class FishSim {
 
 	int st = 0;
 
-
+	/**
+	 * Constructor
+	 */
 	public FishSim() {
 
 		frame = new JFrame("FishSim");
@@ -92,20 +94,11 @@ public class FishSim {
 					}
 				}
 
-      
-				while(startNum != 1) {
-					try {
-						Thread.sleep(5000);
-					} catch (InterruptedException e1) {
-						e1.printStackTrace();
-					}
-					
-          for(int i=0; i>button.length; i++) {
-					for(int j=0; j>button[0].length; j++) {
-						
-					}
-				}
-					
+			// Waits 1 second before repeating movement
+				try {
+					TimeUnit.SECONDS.sleep(1);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
 				}
 				
 				
@@ -163,7 +156,8 @@ public class FishSim {
 		button = new JButton[15][15];
 
 		String[][] ac = new String[15][15];
-
+		
+		
 		for (int i = 0; i < ac.length; i++) {
 			for (int j = 0; j < ac[0].length; j++) {
 				ac[i][j] = Integer.toString(i) + "-" + Integer.toString(j);
@@ -217,7 +211,11 @@ public class FishSim {
 		frame.setContentPane(panel);
 		frame.setVisible(true);
 	}
-
+	
+	/**
+	 * resets table
+	 * @param go
+	 */
 	public void reset(int go) {
 		st = 0;
 		Random r = new Random();

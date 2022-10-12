@@ -22,9 +22,12 @@ public class FishSim {
 	JButton start;
 	JButton stop;
 	JButton reset;
+
+
 	int rep = 0;
 
 	int startNum = 0;
+
 
 	int st = 0;
 
@@ -48,7 +51,8 @@ public class FishSim {
 		icons[4] = new ImageIcon(getClass().getClassLoader().getResource("SeaWeed.jpg"));
 		icons[5] = new ImageIcon(getClass().getClassLoader().getResource("Nemor.jpg"));
 		icons[6] = new ImageIcon(getClass().getClassLoader().getResource("Shark.jpg"));
-
+		icons[7] = new ImageIcon(getClass().getClassLoader().getResource("SharkW.jpg"));
+		icons[7] = new ImageIcon(getClass().getClassLoader().getResource("Blank.jpg"));
 
 		start = new JButton(icons[1]);
 		start.setBorder(null);
@@ -57,6 +61,37 @@ public class FishSim {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				for (int i = 0; i < button.length; i++) {
+					for (int j = 0; j < button[0].length; j++) {
+						if (button[i][j].getIcon().equals(icons[5])) {
+							int right = i + 2, left = i - 1, bottom = j + 2, top = j - 1;
+							
+							
+							if (i + 1 >= 15) {
+								right = i + 1;
+							}
+							if (i - 1 < 0) {
+								left = i;
+							}
+							if (j + 1 >= 15) {
+								bottom = j + 1;
+							}
+							if (j - 1 < 0) {
+								top = j;
+							}
+							
+							for (int g = left ; g < right; g++) {
+								for (int v = top; v < bottom; v++) {
+									if (button[g][v].getIcon().equals(icons[4])) {
+										button[g][v].setIcon(icons[7]);
+									}
+								}
+							}
+							
+						}
+					}
+				}
+
       
 				while(startNum != 1) {
 					try {
@@ -74,6 +109,7 @@ public class FishSim {
 				}
 				
 				
+
 
 				st = 1;
 			}
@@ -111,7 +147,7 @@ public class FishSim {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				reset(0);
 
 			}
@@ -155,9 +191,14 @@ public class FishSim {
 
 						num1 = Integer.valueOf(str[0]);
 						num2 = Integer.valueOf(str[1]);
-						
-						if (button[num1][num2].getIcon().equals(icons[4]) && st == 0) {
-							button[num1][num2].setIcon(icons[6]);
+
+						if (button[num1][num2].getIcon().equals(icons[4]) && st == 0
+								|| button[num1][num2].getIcon().equals(icons[0]) && st == 0) {
+							if (button[num1][num2].getIcon().equals(icons[4])) {
+								button[num1][num2].setIcon(icons[6]);
+							} else {
+								button[num1][num2].setIcon(icons[7]);
+							}
 						}
 					}
 
@@ -198,10 +239,10 @@ public class FishSim {
 				int y = r.nextInt(15);
 				if (!button[x][y].getIcon().equals(icons[5])) {
 					button[x][y].setIcon(icons[5]);
-				}else {
+				} else {
 					s -= 1;
 				}
-				
+
 			}
 
 		}

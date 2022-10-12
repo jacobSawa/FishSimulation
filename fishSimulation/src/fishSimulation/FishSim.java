@@ -22,7 +22,15 @@ public class FishSim {
 	JButton start;
 	JButton stop;
 	JButton reset;
+
+
+	int rep = 0;
+
+	int startNum = 0;
+
+
 	int st = 0;
+
 
 	public FishSim() {
 
@@ -53,10 +61,6 @@ public class FishSim {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				
-				
-
 				for (int i = 0; i < button.length; i++) {
 					for (int j = 0; j < button[0].length; j++) {
 						if (button[i][j].getIcon().equals(icons[5])) {
@@ -88,6 +92,25 @@ public class FishSim {
 					}
 				}
 
+      
+				while(startNum != 1) {
+					try {
+						Thread.sleep(5000);
+					} catch (InterruptedException e1) {
+						e1.printStackTrace();
+					}
+					
+          for(int i=0; i>button.length; i++) {
+					for(int j=0; j>button[0].length; j++) {
+						
+					}
+				}
+					
+				}
+				
+				
+
+
 				st = 1;
 			}
 
@@ -106,7 +129,7 @@ public class FishSim {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				startNum = 1;
 			}
 
 		});

@@ -7,6 +7,7 @@
 package fishSimulation;
 
 import java.awt.event.ActionEvent;
+import java.util.concurrent.TimeUnit;
 import java.awt.event.ActionListener;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -22,18 +23,9 @@ public class FishSim {
 	JButton start;
 	JButton stop;
 	JButton reset;
-
-
-	int rep = 0;
-
-	int startNum = 0;
-
-
 	int st = 0;
 
-	/**
-	 * Constructor
-	 */
+
 	public FishSim() {
 
 		frame = new JFrame("FishSim");
@@ -63,6 +55,47 @@ public class FishSim {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+
+				Random r = new Random();
+				st = 1;
+				do {
+					System.out.println(st);
+					for (int i = 0; i < button.length; i++) {
+						for (int j = 0; j < button[0].length; j++) {
+							if (button[i][j].getIcon().equals(icons[5])) {
+								int rand = r.nextInt(9);
+								int eight = 0;
+
+								int right = i + 2, left = i - 1, bottom = j + 2, top = j - 1;
+
+								if (i + 1 >= 15) {
+									right = i + 1;
+								}
+								if (i - 1 < 0) {
+									left = i;
+								}
+								if (j + 1 >= 15) {
+									bottom = j + 1;
+								}
+								if (j - 1 < 0) {
+									top = j;
+								}
+
+								for (int g = left; g < right; g++) {
+									for (int v = top; v < bottom; v++) {
+										if (rand == eight) {
+											if (button[g][v].getIcon().equals(icons[4])
+													|| button[g][v].getIcon().equals(icons[0])) {
+												button[i][j].setIcon(icons[0]);
+												button[g][v].setIcon(icons[5]);
+												g += 10;
+												v += 10;
+
+											}
+											rand = r.nextInt(9);
+										}
+										eight += 1;
+
 				for (int i = 0; i < button.length; i++) {
 					for (int j = 0; j < button[0].length; j++) {
 						if (button[i][j].getIcon().equals(icons[5])) {
@@ -86,13 +119,65 @@ public class FishSim {
 								for (int v = top; v < bottom; v++) {
 									if (button[g][v].getIcon().equals(icons[4])) {
 										button[g][v].setIcon(icons[8]);
+
 									}
 								}
 							}
-							
+
+
+							if (button[i][j].getIcon().equals(icons[6]) || button[i][j].getIcon().equals(icons[7])) {
+								int rand = r.nextInt(9);
+								int eight = 0;
+
+								int right = i + 2, left = i - 1, bottom = j + 2, top = j - 1;
+
+								if (i + 1 >= 15) {
+									right = i + 1;
+								}
+								if (i - 1 < 0) {
+									left = i;
+								}
+								if (j + 1 >= 15) {
+									bottom = j + 1;
+								}
+								if (j - 1 < 0) {
+									top = j;
+								}
+
+								for (int g = left; g < right; g++) {
+									for (int v = top; v < bottom; v++) {
+										if (rand == eight) {
+											if (button[g][v].getIcon().equals(icons[4])
+													|| button[g][v].getIcon().equals(icons[0])
+													|| button[g][v].getIcon().equals(icons[5])) {
+												if (!button[g][v].getIcon().equals(icons[5])) {
+													if (button[g][v].getIcon().equals(icons[6])) {
+														button[i][j].setIcon(icons[0]);
+													} else {
+														button[i][j].setIcon(icons[4]);
+													}
+
+												}
+												if (button[g][v].getIcon().equals(icons[0])) {
+													button[g][v].setIcon(icons[7]);
+												} else {
+													button[g][v].setIcon(icons[6]);
+												}
+
+												g += 10;
+												v += 10;
+
+											}
+											rand = r.nextInt(9);
+										}
+										eight += 1;
+									}
+								} 
+							}
+
 						}
-					}
-				}
+					} 
+
 
 			// Waits 1 second before repeating movement
 				try {
@@ -100,11 +185,9 @@ public class FishSim {
 				} catch (InterruptedException e1) {
 					e1.printStackTrace();
 				}
+
 				
 				
-
-
-				st = 1;
 			}
 
 		});
@@ -122,7 +205,7 @@ public class FishSim {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				startNum = 1;
+				st = 0;
 			}
 
 		});

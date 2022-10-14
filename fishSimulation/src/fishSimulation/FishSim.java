@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 import java.awt.event.ActionListener;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-
+import java.util.concurrent.TimeUnit;
 import javax.swing.*;
 import java.util.Random;
 
@@ -24,6 +24,7 @@ public class FishSim {
 	JButton stop;
 	JButton reset;
 	int st = 0;
+
 
 	public FishSim() {
 
@@ -54,6 +55,7 @@ public class FishSim {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+
 				Random r = new Random();
 				st = 1;
 				do {
@@ -93,9 +95,35 @@ public class FishSim {
 											rand = r.nextInt(9);
 										}
 										eight += 1;
+
+				for (int i = 0; i < button.length; i++) {
+					for (int j = 0; j < button[0].length; j++) {
+						if (button[i][j].getIcon().equals(icons[5])) {
+							int right = i + 2, left = i - 1, bottom = j + 2, top = j - 1;
+							
+							
+							if (i + 1 >= 15) {
+								right = i + 1;
+							}
+							if (i - 1 < 0) {
+								left = i;
+							}
+							if (j + 1 >= 15) {
+								bottom = j + 1;
+							}
+							if (j - 1 < 0) {
+								top = j;
+							}
+							
+							for (int g = left ; g < right; g++) {
+								for (int v = top; v < bottom; v++) {
+									if (button[g][v].getIcon().equals(icons[4])) {
+										button[g][v].setIcon(icons[8]);
+
 									}
 								}
 							}
+
 
 							if (button[i][j].getIcon().equals(icons[6]) || button[i][j].getIcon().equals(icons[7])) {
 								int rand = r.nextInt(9);
@@ -149,12 +177,15 @@ public class FishSim {
 
 						}
 					} 
-					try {
-						TimeUnit.SECONDS.sleep(5);
-					} catch (InterruptedException e1) {
-						e1.printStackTrace();
-					}
-				} while (st == 1);
+
+
+			// Waits 1 second before repeating movement
+				try {
+					TimeUnit.SECONDS.sleep(1);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+
 				
 				
 			}
@@ -208,7 +239,8 @@ public class FishSim {
 		button = new JButton[15][15];
 
 		String[][] ac = new String[15][15];
-
+		
+		
 		for (int i = 0; i < ac.length; i++) {
 			for (int j = 0; j < ac[0].length; j++) {
 				ac[i][j] = Integer.toString(i) + "-" + Integer.toString(j);
@@ -262,7 +294,11 @@ public class FishSim {
 		frame.setContentPane(panel);
 		frame.setVisible(true);
 	}
-
+	
+	/**
+	 * resets table
+	 * @param go
+	 */
 	public void reset(int go) {
 		st = 0;
 		Random r = new Random();

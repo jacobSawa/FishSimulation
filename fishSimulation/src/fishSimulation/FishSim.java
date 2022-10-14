@@ -7,10 +7,11 @@
 package fishSimulation;
 
 import java.awt.event.ActionEvent;
+import java.util.concurrent.TimeUnit;
 import java.awt.event.ActionListener;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-
+import java.util.concurrent.TimeUnit;
 import javax.swing.*;
 import java.util.Random;
 
@@ -22,15 +23,7 @@ public class FishSim {
 	JButton start;
 	JButton stop;
 	JButton reset;
-
-
-	int rep = 0;
-
-	int startNum = 0;
-
-
 	int st = 0;
-
 
 	public FishSim() {
 
@@ -52,7 +45,7 @@ public class FishSim {
 		icons[5] = new ImageIcon(getClass().getClassLoader().getResource("Nemor.jpg"));
 		icons[6] = new ImageIcon(getClass().getClassLoader().getResource("Shark.jpg"));
 		icons[7] = new ImageIcon(getClass().getClassLoader().getResource("SharkW.jpg"));
-		icons[7] = new ImageIcon(getClass().getClassLoader().getResource("Blank.jpg"));
+		icons[8] = new ImageIcon(getClass().getClassLoader().getResource("Blank.jpg"));
 
 		start = new JButton(icons[1]);
 		start.setBorder(null);
@@ -61,57 +54,104 @@ public class FishSim {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				for (int i = 0; i < button.length; i++) {
-					for (int j = 0; j < button[0].length; j++) {
-						if (button[i][j].getIcon().equals(icons[5])) {
-							int right = i + 2, left = i - 1, bottom = j + 2, top = j - 1;
-							
-							
-							if (i + 1 >= 15) {
-								right = i + 1;
-							}
-							if (i - 1 < 0) {
-								left = i;
-							}
-							if (j + 1 >= 15) {
-								bottom = j + 1;
-							}
-							if (j - 1 < 0) {
-								top = j;
-							}
-							
-							for (int g = left ; g < right; g++) {
-								for (int v = top; v < bottom; v++) {
-									if (button[g][v].getIcon().equals(icons[4])) {
-										button[g][v].setIcon(icons[7]);
+
+				Random r = new Random();
+				st = 1;
+				//do {
+					System.out.println(st);
+					for (int i = 0; i < button.length; i++) {
+						for (int j = 0; j < button[0].length; j++) {
+							if (button[i][j].getIcon().equals(icons[5])) {
+								int rand = r.nextInt(9);
+								int eight = 0;
+
+								int right = i + 2, left = i - 1, bottom = j + 2, top = j - 1;
+
+								if (i + 1 >= 15) {
+									right = i + 1;
+								}
+								if (i - 1 < 0) {
+									left = i;
+								}
+								if (j + 1 >= 15) {
+									bottom = j + 1;
+								}
+								if (j - 1 < 0) {
+									top = j;
+								}
+
+								for (int g = left; g < right; g++) {
+									for (int v = top; v < bottom; v++) {
+										if (rand == eight) {
+											if (button[g][v].getIcon().equals(icons[4])
+													|| button[g][v].getIcon().equals(icons[0])) {
+												button[i][j].setIcon(icons[0]);
+												button[g][v].setIcon(icons[5]);
+												g += 10;
+												v += 10;
+
+											}
+											rand = r.nextInt(9);
+										}
+										eight += 1;
+
 									}
 								}
 							}
-							
+						
+							if (button[i][j].getIcon().equals(icons[6]) || button[i][j].getIcon().equals(icons[7])) {
+								int rand = r.nextInt(9);
+								int eight = 0;
+
+								int right = i + 2, left = i - 1, bottom = j + 2, top = j - 1;
+
+								if (i + 1 >= 15) {
+									right = i + 1;
+								}
+								if (i - 1 < 0) {
+									left = i;
+								}
+								if (j + 1 >= 15) {
+									bottom = j + 1;
+								}
+								if (j - 1 < 0) {
+									top = j;
+								}
+
+								for (int g = left; g < right; g++) {
+									for (int v = top; v < bottom; v++) {
+										if (rand == eight) {
+											if (button[g][v].getIcon().equals(icons[4])
+													|| button[g][v].getIcon().equals(icons[0])
+													|| button[g][v].getIcon().equals(icons[5])) {
+												if (!button[g][v].getIcon().equals(icons[5])) {
+													if (button[g][v].getIcon().equals(icons[6])) {
+														button[i][j].setIcon(icons[0]);
+													} else {
+														button[i][j].setIcon(icons[4]);
+													}
+
+												}
+												if (button[g][v].getIcon().equals(icons[0])) {
+													button[g][v].setIcon(icons[7]);
+												} else {
+													button[g][v].setIcon(icons[6]);
+												}
+
+												g += 10;
+												v += 10;
+
+											}
+											rand = r.nextInt(9);
+										}
+										eight += 1;
+									}
+								} 
+							}
+
 						}
 					}
-				}
-
-      
-				while(startNum != 1) {
-					try {
-						Thread.sleep(5000);
-					} catch (InterruptedException e1) {
-						e1.printStackTrace();
-					}
-					
-          for(int i=0; i>button.length; i++) {
-					for(int j=0; j>button[0].length; j++) {
-						
-					}
-				}
-					
-				}
-				
-				
-
-
-				st = 1;
+				//} while (st == 1);
 			}
 
 		});
@@ -129,7 +169,7 @@ public class FishSim {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				startNum = 1;
+				st = 0;
 			}
 
 		});
@@ -163,7 +203,8 @@ public class FishSim {
 		button = new JButton[15][15];
 
 		String[][] ac = new String[15][15];
-
+		
+		
 		for (int i = 0; i < ac.length; i++) {
 			for (int j = 0; j < ac[0].length; j++) {
 				ac[i][j] = Integer.toString(i) + "-" + Integer.toString(j);
@@ -217,7 +258,11 @@ public class FishSim {
 		frame.setContentPane(panel);
 		frame.setVisible(true);
 	}
-
+	
+	/**
+	 * resets table
+	 * @param go
+	 */
 	public void reset(int go) {
 		st = 0;
 		Random r = new Random();

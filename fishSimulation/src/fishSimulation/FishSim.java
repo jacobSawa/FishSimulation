@@ -181,6 +181,11 @@ public class FishSim {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				st = 0;
+				for (int i = 0; i < button.length; i ++) {
+					for (int j = 0; j <button[0].length; j ++) {
+						button[i][j].setEnabled(false);
+					}
+				}
 				timer.stop();
 			}
 
@@ -278,6 +283,11 @@ public class FishSim {
 	 * @param go
 	 */
 	public void reset(int go) {
+		for (int i = 0; i < button.length; i ++) {
+			for (int j = 0; j <button[0].length; j ++) {
+				button[i][j].setEnabled(true);
+			}
+		}
 		st = 0;
 		int seaWeedGen = 0;
 		Random r = new Random();

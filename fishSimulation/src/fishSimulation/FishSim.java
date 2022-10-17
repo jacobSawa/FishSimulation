@@ -21,11 +21,11 @@ public class FishSim {
 	JButton start;
 	JButton stop;
 	JButton reset;
-	int st = 0, sharks = 0, fish = 0, speed = 0;
+	int st = 0, sharks = 0, fish = 0, speed = 0, sharkDeathTimer = 0, sharkDeathCounter = 0;
 	Timer timer;
 
 	public FishSim() {
-		speed = 500;
+		speed = 1000;
 		frame = new JFrame("FishSim");
 		frame.setSize(1250, 1000);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -118,27 +118,43 @@ public class FishSim {
 								for (int g = left; g < right; g++) {
 									for (int v = top; v < bottom; v++) {
 										if (rand == eight) {
-											if (button[g][v].getIcon().equals(icons[4])
-													|| button[g][v].getIcon().equals(icons[0])
-													|| button[g][v].getIcon().equals(icons[5])) {
-												if (!button[g][v].getIcon().equals(icons[5])) {
-													if (button[g][v].getIcon().equals(icons[6])) {
-														button[i][j].setIcon(icons[0]);
+											if(button[g][v].getIcon().equals(icons[5])) {
+												sharkDeathTimer = 0;
+											}else {
+												sharkDeathCounter += 1;
+											}
+											
+											if(sharkDeathCounter == sharks) {
+												sharkDeathTimer += 1;
+											}
+											
+											if(sharkDeathTimer != 5) {
+												if (button[g][v].getIcon().equals(icons[4])
+														|| button[g][v].getIcon().equals(icons[0])
+														|| button[g][v].getIcon().equals(icons[5])) {
+													if (!button[g][v].getIcon().equals(icons[5])) {
+														if (button[g][v].getIcon().equals(icons[6])) {
+															button[i][j].setIcon(icons[0]);
+														} else {
+															button[i][j].setIcon(icons[4]);
+														}
+
+													}
+													if (button[g][v].getIcon().equals(icons[0])) {
+														button[g][v].setIcon(icons[7]);
 													} else {
-														button[i][j].setIcon(icons[4]);
+														button[g][v].setIcon(icons[6]);
 													}
 
-												}
-												if (button[g][v].getIcon().equals(icons[0])) {
-													button[g][v].setIcon(icons[7]);
-												} else {
-													button[g][v].setIcon(icons[6]);
-												}
+													g += 10;
+													v += 10;
 
-												g += 10;
-												v += 10;
-
+												}
+											}else {
+												button[g][v].setIcon(icons[0]);
 											}
+											
+											
 											rand = r.nextInt(9);
 										}
 										eight += 1;
@@ -181,11 +197,6 @@ public class FishSim {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				st = 0;
-				for (int i = 0; i < button.length; i ++) {
-					for (int j = 0; j <button[0].length; j ++) {
-						button[i][j].setEnabled(false);
-					}
-				}
 				timer.stop();
 			}
 
@@ -283,11 +294,6 @@ public class FishSim {
 	 * @param go
 	 */
 	public void reset(int go) {
-		for (int i = 0; i < button.length; i ++) {
-			for (int j = 0; j <button[0].length; j ++) {
-				button[i][j].setEnabled(true);
-			}
-		}
 		st = 0;
 		int seaWeedGen = 0;
 		Random r = new Random();

@@ -25,6 +25,7 @@ public class FishSim {
 	Timer timer;
 
 	public FishSim() {
+
 		speed = 500;
 		frame = new JFrame("FishSim");
 		frame.setSize(1250, 1000);
@@ -82,7 +83,10 @@ public class FishSim {
 										if (rand == eight) {
 											if (button[g][v].getIcon().equals(icons[4])
 													|| button[g][v].getIcon().equals(icons[0])) {
-												button[i][j].setIcon(icons[0]);
+												if (!button[g][v].getIcon().equals(icons[4])) {
+													button[i][j].setIcon(icons[0]);
+												}
+												
 												button[g][v].setIcon(icons[5]);
 												g += 10;
 												v += 10;
@@ -142,6 +146,25 @@ public class FishSim {
 											rand = r.nextInt(9);
 										}
 										eight += 1;
+										
+										int fish = 0;
+										
+										for (int i1 = 0; i1 < button.length; i1 ++) {
+											for (int j1 = 0; j1 < button.length; j1 ++) {
+												if (button[i1][j1].getIcon().equals(icons[5])) {
+													fish += 1;
+												}
+											}
+										}
+										
+										if (fish == 0) {
+											st = 0;
+											for (int i1 = 0; i1 < button.length; i1 ++) {
+												for (int j1 = 0; j1 <button[0].length; j1 ++) {
+													button[i1][j1].setEnabled(false);
+												}
+											}
+										}
 									}
 								} 
 							}

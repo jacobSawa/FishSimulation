@@ -341,5 +341,21 @@ public class FishSim {
 
 		}
 	}
+	
+	public void disable(int stop) {
+		boolean diss;
+		
+		if (stop == 0) {
+			diss = true;
+		}else {
+			diss = false;
+		}
+		
+		for (int i = 0; i < button.length; i ++) {
+			for (int j = 0; j < button[0].length; j ++) {
+				button[i][j].setEnabled(diss);
+			}
+		}
+	}
 
 }

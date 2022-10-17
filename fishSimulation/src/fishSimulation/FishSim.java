@@ -279,7 +279,19 @@ public class FishSim {
 	 */
 	public void reset(int go) {
 		st = 0;
+		int seaWeedGen = 0;
 		Random r = new Random();
+		for (int i = 0; i < button.length; i++) {
+			for (int j = 0; j < button.length; j++) {
+				seaWeedGen = r.nextInt(3);
+				if(seaWeedGen == 1) {
+					button[i][j].setIcon(icons[4]);
+				}else {
+					button[i][j].setIcon(icons[0]);
+				}
+			}
+		}
+		
 		if (go == 1) {
 			for (int s = 0; s < 15; s++) {
 				int x = r.nextInt(15);
@@ -290,7 +302,12 @@ public class FishSim {
 		} else {
 			for (int i = 0; i < button.length; i++) {
 				for (int j = 0; j < button.length; j++) {
-					button[i][j].setIcon(icons[4]);
+					seaWeedGen = r.nextInt(3);
+					if(seaWeedGen == 1) {
+						button[i][j].setIcon(icons[4]);
+					}else {
+						button[i][j].setIcon(icons[0]);
+					}
 				}
 			}
 

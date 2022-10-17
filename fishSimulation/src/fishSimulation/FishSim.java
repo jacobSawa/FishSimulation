@@ -82,7 +82,10 @@ public class FishSim {
 										if (rand == eight) {
 											if (button[g][v].getIcon().equals(icons[4])
 													|| button[g][v].getIcon().equals(icons[0])) {
-												button[i][j].setIcon(icons[0]);
+												if (!button[g][v].getIcon().equals(icons[4])) {
+													button[i][j].setIcon(icons[0]);
+												}
+												
 												button[g][v].setIcon(icons[5]);
 												g += 10;
 												v += 10;

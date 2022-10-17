@@ -7,11 +7,9 @@
 package fishSimulation;
 
 import java.awt.event.ActionEvent;
-import java.util.concurrent.TimeUnit;
 import java.awt.event.ActionListener;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.util.concurrent.TimeUnit;
 import javax.swing.*;
 import java.util.Random;
 
@@ -23,10 +21,11 @@ public class FishSim {
 	JButton start;
 	JButton stop;
 	JButton reset;
-	int st = 0;
+	int st = 0, sharks = 0, fish = 0, speed = 0;
+	Timer timer;
 
 	public FishSim() {
-
+		speed = 1000;
 		frame = new JFrame("FishSim");
 		frame.setSize(1250, 1000);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,16 +48,14 @@ public class FishSim {
 
 		start = new JButton(icons[1]);
 		start.setBorder(null);
-
-		start.addActionListener(new ActionListener() {
+		
+		timer = new Timer(speed, new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
 				Random r = new Random();
-				st = 1;
-				//do {
-					System.out.println(st);
+				System.out.println("Jacob sucks");
+				if(st == 1 && fish > 0 && sharks > 0) {
 					for (int i = 0; i < button.length; i++) {
 						for (int j = 0; j < button[0].length; j++) {
 							if (button[i][j].getIcon().equals(icons[5])) {
@@ -151,9 +148,23 @@ public class FishSim {
 
 						}
 					}
-				//} while (st == 1);
+				}
+				
+				
 			}
+			
+		});
+		
 
+		start.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				timer.start();
+				st = 1;
+			}
+					
+				
 		});
 
 		c.gridheight = 2;
@@ -170,6 +181,7 @@ public class FishSim {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				st = 0;
+				timer.stop();
 			}
 
 		});
@@ -237,8 +249,10 @@ public class FishSim {
 								|| button[num1][num2].getIcon().equals(icons[0]) && st == 0) {
 							if (button[num1][num2].getIcon().equals(icons[4])) {
 								button[num1][num2].setIcon(icons[6]);
+								sharks += 1;
 							} else {
 								button[num1][num2].setIcon(icons[7]);
+								sharks += 1;
 							}
 						}
 					}
@@ -283,6 +297,7 @@ public class FishSim {
 				int x = r.nextInt(15);
 				int y = r.nextInt(15);
 				button[x][y].setIcon(icons[5]);
+				fish += 1;
 			}
 		} else {
 			for (int i = 0; i < button.length; i++) {
@@ -301,6 +316,7 @@ public class FishSim {
 				int y = r.nextInt(15);
 				if (!button[x][y].getIcon().equals(icons[5])) {
 					button[x][y].setIcon(icons[5]);
+					fish += 1;
 				} else {
 					s -= 1;
 				}

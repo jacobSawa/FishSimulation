@@ -25,7 +25,8 @@ public class FishSim {
 	Timer timer;
 
 	public FishSim() {
-		speed = 300;
+
+		speed = 500;
 		frame = new JFrame("FishSim");
 		frame.setSize(1250, 1000);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

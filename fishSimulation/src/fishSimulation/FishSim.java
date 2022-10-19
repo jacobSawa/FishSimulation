@@ -82,7 +82,13 @@ public class FishSim {
 										if (rand == eight) {
 											if (button[g][v].getIcon().equals(icons[4])
 													|| button[g][v].getIcon().equals(icons[0])) {
-												button[i][j].setIcon(icons[0]);
+												
+												if (button[g][v].getIcon().equals(icons[4])){
+													button[i][j].setIcon(icons[5]);
+												}else {
+													button[i][j].setIcon(icons[0]);
+												}
+												
 												button[g][v].setIcon(icons[5]);
 												g += 10;
 												v += 10;
@@ -166,9 +172,22 @@ public class FishSim {
 					}
 				}
 				
+				int fish = 0;
+				for (int i = 0; i < button.length; i ++) {
+					for (int j = 0; j < button[0].length; j ++) {
+						if (button[i][j].getIcon().equals(icons[5])) {
+							fish += 1;
+						}
+					}
+				}
 				
+				if (fish == 0) {
+					disable(1);
+					timer.stop();
+				}else {
+					fish = 0;
+				}
 			}
-			
 		});
 		
 
@@ -215,7 +234,7 @@ public class FishSim {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				disable(0);
 				reset(0);
 
 			}
@@ -339,6 +358,22 @@ public class FishSim {
 
 			}
 
+		}
+	}
+	
+	public void disable(int stop) {
+		boolean diss;
+		
+		if (stop == 0) {
+			diss = true;
+		}else {
+			diss = false;
+		}
+		
+		for (int i = 0; i < button.length; i ++) {
+			for (int j = 0; j < button[0].length; j ++) {
+				button[i][j].setEnabled(diss);
+			}
 		}
 	}
 

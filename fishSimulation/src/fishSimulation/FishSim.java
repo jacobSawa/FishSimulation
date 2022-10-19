@@ -216,7 +216,6 @@ public class FishSim {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				st = 0;
-				disable(1);
 				timer.stop();
 			}
 

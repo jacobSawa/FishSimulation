@@ -170,7 +170,7 @@ public class FishSim {
 
 						}
 					}
-				}
+				} 
 				
 				int fish = 0;
 				for (int i = 0; i < button.length; i ++) {

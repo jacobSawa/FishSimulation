@@ -54,10 +54,26 @@ public class FishSim {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Random r = new Random();
-				System.out.println("Jacob sucks");
+				//System.out.println("Jacob sucks");
+				
+				sharkDeathCounter = 0;
+				sharkDeathTimer = 0;
+				
+				/*
+				for (int a = 0; a < button.length; a++) {
+					for (int b = 0; b < button[0].length; b++) {
+						if(button[a][b].getIcon().equals(icons[6]) || button[a][b].getIcon().equals(icons[7])){
+							sharks += 1;
+						}
+					}
+				}
+				*/
+				
 				if(st == 1 && fish > 0 && sharks > 0) {
 					for (int i = 0; i < button.length; i++) {
 						for (int j = 0; j < button[0].length; j++) {
+							System.out.println(sharks);
+							
 							if (button[i][j].getIcon().equals(icons[5])) {
 								int rand = r.nextInt(9);
 								int eight = 0;
@@ -114,21 +130,22 @@ public class FishSim {
 								if (j - 1 < 0) {
 									top = j;
 								}
-
+								
 								for (int g = left; g < right; g++) {
 									for (int v = top; v < bottom; v++) {
 										if (rand == eight) {
 											if(button[g][v].getIcon().equals(icons[5])) {
 												sharkDeathTimer = 0;
+												sharkDeathCounter = 0;
 											}else {
 												sharkDeathCounter += 1;
 											}
 											
-											if(sharkDeathCounter == sharks) {
+											if(sharkDeathCounter >= sharks) {
 												sharkDeathTimer += 1;
 											}
 											
-											if(sharkDeathTimer != 5) {
+											if(sharkDeathTimer < 5) {
 												if (button[g][v].getIcon().equals(icons[4])
 														|| button[g][v].getIcon().equals(icons[0])
 														|| button[g][v].getIcon().equals(icons[5])) {
@@ -150,10 +167,10 @@ public class FishSim {
 													v += 10;
 
 												}
-											}else {
+											}else if(sharkDeathTimer >= 5) {
 												button[g][v].setIcon(icons[0]);
+												button[i][j].setIcon(icons[0]);
 											}
-											
 											
 											rand = r.nextInt(9);
 										}
@@ -164,8 +181,16 @@ public class FishSim {
 
 						}
 					}
+					
 				}
-				
+				sharks = 0;
+				for (int a = 0; a < button.length; a++) {
+					for (int b = 0; b < button[0].length; b++) {
+						if(button[a][b].getIcon().equals(icons[6]) || button[a][b].getIcon().equals(icons[7])){
+							sharks += 1;
+						}
+					}
+				}
 				
 			}
 			
@@ -265,10 +290,8 @@ public class FishSim {
 								|| button[num1][num2].getIcon().equals(icons[0]) && st == 0) {
 							if (button[num1][num2].getIcon().equals(icons[4])) {
 								button[num1][num2].setIcon(icons[6]);
-								sharks += 1;
 							} else {
 								button[num1][num2].setIcon(icons[7]);
-								sharks += 1;
 							}
 						}
 					}

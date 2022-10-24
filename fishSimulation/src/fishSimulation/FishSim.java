@@ -54,20 +54,9 @@ public class FishSim {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Random r = new Random();
-				//System.out.println("Jacob sucks");
 				
 				sharkDeathCounter = 0;
 				sharkDeathTimer = 0;
-				
-				/*
-				for (int a = 0; a < button.length; a++) {
-					for (int b = 0; b < button[0].length; b++) {
-						if(button[a][b].getIcon().equals(icons[6]) || button[a][b].getIcon().equals(icons[7])){
-							sharks += 1;
-						}
-					}
-				}
-				*/
 				
 				if(st == 1 && fish > 0 && sharks > 0) {
 					for (int i = 0; i < button.length; i++) {
@@ -151,6 +140,7 @@ public class FishSim {
 												sharkDeathTimer += 1;
 											}
 											
+											// Lets the shark move if the death timer isn't five or above
 											if(sharkDeathTimer < 5) {
 												if (button[g][v].getIcon().equals(icons[4])
 														|| button[g][v].getIcon().equals(icons[0])
@@ -173,6 +163,7 @@ public class FishSim {
 													v += 10;
 
 												}
+											// Kills a shark if the death timer is five or above
 											}else if(sharkDeathTimer >= 5) {
 												button[g][v].setIcon(icons[0]);
 												button[i][j].setIcon(icons[0]);
@@ -189,6 +180,8 @@ public class FishSim {
 					}
 					
 				}
+				
+				//Check how many sharks are on the board
 				sharks = 0;
 				for (int a = 0; a < button.length; a++) {
 					for (int b = 0; b < button[0].length; b++) {
@@ -197,7 +190,8 @@ public class FishSim {
 						}
 					}
 				}
-        
+        			
+				//Checks how many fish are on the board
 				int fish = 0;
 				for (int i = 0; i < button.length; i ++) {
 					for (int j = 0; j < button[0].length; j ++) {
@@ -207,6 +201,7 @@ public class FishSim {
 					}
 				}
 				
+				//Stops the simulation if there are no fish left
 				if (fish == 0) {
 					disable(1);
 					timer.stop();

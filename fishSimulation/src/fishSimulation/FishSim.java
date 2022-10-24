@@ -203,8 +203,6 @@ public class FishSim {
 				}
         			
 				//Checks how many fish are on the board
-				int fish = 0;
-
 				for (int i = 0; i < button.length; i ++) {
 					for (int j = 0; j < button[0].length; j ++) {
 						if (button[i][j].getIcon().equals(icons[5])) {

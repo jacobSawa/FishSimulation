@@ -22,6 +22,8 @@ public class FishSim {
 	JButton stop;
 	JButton reset;
 	int st = 0, sharks = 0, fish = 0, speed = 0, sharkDeathTimer = 0, sharkDeathCounter = 0;
+	int fish2 = 0;
+	int shark = 0;
 	Timer timer;
 
 	public FishSim() {
@@ -54,10 +56,12 @@ public class FishSim {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Random r = new Random();
+
 				
 				sharkDeathCounter = 0;
 				sharkDeathTimer = 0;
 				
+
 				if(st == 1 && fish > 0 && sharks > 0) {
 					for (int i = 0; i < button.length; i++) {
 						for (int j = 0; j < button[0].length; j++) {
@@ -69,6 +73,7 @@ public class FishSim {
 
 								int right = i + 2, left = i - 1, bottom = j + 2, top = j - 1;
 
+								//sets bound of looking 
 								if (i + 1 >= 15) {
 									right = i + 1;
 								}
@@ -88,6 +93,7 @@ public class FishSim {
 											if (button[g][v].getIcon().equals(icons[4])
 													|| button[g][v].getIcon().equals(icons[0])) {
 												
+												//  if eat seaweed doubbble fish 
 												if (button[g][v].getIcon().equals(icons[4])){
 													button[i][j].setIcon(icons[5]);
 												}else {
@@ -112,7 +118,8 @@ public class FishSim {
 								int eight = 0;
 
 								int right = i + 2, left = i - 1, bottom = j + 2, top = j - 1;
-
+								
+								//sets bound of movement 
 								if (i + 1 >= 15) {
 									right = i + 1;
 								}
@@ -126,6 +133,9 @@ public class FishSim {
 									top = j;
 								}
 								
+								//makes the movement 
+
+
 								for (int g = left; g < right; g++) {
 									for (int v = top; v < bottom; v++) {
 										if (rand == eight) {
@@ -139,9 +149,10 @@ public class FishSim {
 											if(sharkDeathCounter >= sharks) {
 												sharkDeathTimer += 1;
 											}
-											
+
 											// Lets the shark move if the death timer isn't five or above
 											if(sharkDeathTimer < 5) {
+
 												if (button[g][v].getIcon().equals(icons[4])
 														|| button[g][v].getIcon().equals(icons[0])
 														|| button[g][v].getIcon().equals(icons[5])) {
@@ -178,7 +189,7 @@ public class FishSim {
 
 						}
 					}
-					
+				
 				}
 				
 				//Check how many sharks are on the board
@@ -193,21 +204,26 @@ public class FishSim {
         			
 				//Checks how many fish are on the board
 				int fish = 0;
+
 				for (int i = 0; i < button.length; i ++) {
 					for (int j = 0; j < button[0].length; j ++) {
 						if (button[i][j].getIcon().equals(icons[5])) {
-							fish += 1;
+							fish2 += 1;
 						}
 					}
 				}
 				
+
 				//Stops the simulation if there are no fish left
 				if (fish == 0) {
 					disable(1);
 					timer.stop();
 				}else {
-					fish = 0;
+					fish2 = 0;
+					
 				}
+				
+
 			}
 		});
 		
